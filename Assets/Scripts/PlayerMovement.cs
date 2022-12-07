@@ -50,9 +50,13 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -135f));
         }
-        else
+        else if (movement.x == -1 && movement.y == 1)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 45));
+        }
+        else if (movement.x == -1 && movement.y == -1)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 135f));
         }
 
     }
