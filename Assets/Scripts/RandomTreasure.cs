@@ -4,25 +4,58 @@ using UnityEngine;
 
 public class RandomTreasure : MonoBehaviour
 {
+    public static RandomTreasure instance;
+
     public GameObject[] treasures;
     private int treRand;
-    private Transform post;
+    private Vector3 post;
     private float postX;
     private float postY;
+    private List<GameObject> list = new List<GameObject>();
+    private GameObject prefab;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
-        treRand = Random.Range(0, treasures.Length);
-
-        for (int i = 0; i < 2; i++)
+        for (int i = 1; i <= 30; i++)
         {
-            if (i < 2)
+            treRand = Random.Range(0, treasures.Length);
+
+            postX = Random.Range(-8f, 8f);
+
+            if (i <= 2)
             {
-                postX = Random.Range(-8, 8);
-                postY = (float)-0.5;
-                post.position = new Vector3(postX, postY, 0);
-                Instantiate(treasures[treRand], post.position, transform.rotation);
+                postY = -0.5f;
             }
+            else if (i <= 6)
+            {
+                postY = -1.5f;
+            }
+            else if (i <= 14)
+            {
+                postY = -2.5f;
+            }
+            else if (i <= 30)
+            {
+                postY = -3.5f;
+            }
+
+            post = new Vector3(postX, postY, 0);
+
+            prefab = Instantiate(treasures[treRand], post, transform.rotation);
+            list.Add(prefab);
+        }
+    }
+
+    public void PrefabReset()
+    {
+        foreach (GameObject ls in list)
+        {
+            ls.SetActive(true);
         }
     }
 }

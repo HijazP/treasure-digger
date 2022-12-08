@@ -4,23 +4,32 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
+
     private Rigidbody2D rb;
     private Vector2 movement;
     private float speed = 5f;
     private bool move = false;
     public ActiveGM gm;
+    private Vector3 post;
+    private Quaternion rot;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        post = transform.position;
+        rot = transform.rotation;
     }
 
     private void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-
-        Debug.Log("x: " + movement.x + "\n" + "Y: " + movement.y);
 
         if (move == true)
         {
@@ -77,6 +86,13 @@ public class PlayerMovement : MonoBehaviour
         {
             move = true;
             gm.ActiveEdge();
+            TimerCD.instance.Play();
         }
+    }
+
+    public void ResetPost()
+    {
+        transform.position = post;
+        transform.rotation = rot;
     }
 }
