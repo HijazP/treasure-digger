@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Batas
   - Robot
+  - BatasKiri
+  - BatasKanan
   layers:
   - Default
   - TransparentFX

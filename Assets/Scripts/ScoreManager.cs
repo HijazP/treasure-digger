@@ -17,9 +17,26 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
+        if (score == 2)
+        {
+            BFS.instance.UpdateEdge(-1.5f);
+            BFS.instance.ChangeDirection();
+        }
+        else if (score == 6)
+        {
+            BFS.instance.UpdateEdge(-2.5f);
+            BFS.instance.ChangeDirection();
+        }
+        else if (score == 14)
+        {
+            BFS.instance.UpdateEdge(-3.5f);
+            BFS.instance.ChangeDirection();
+        }
+
         if (score == 30)
         {
             TimerCD.instance.Stop();
+            BFS.instance.Stop();
         }
     }
 

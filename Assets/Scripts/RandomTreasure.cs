@@ -14,12 +14,12 @@ public class RandomTreasure : MonoBehaviour
     private List<GameObject> list = new List<GameObject>();
     private GameObject prefab;
 
-    void Awake()
+    private void Awake()
     {
         instance = this;
     }
 
-    void Start()
+    private void Start()
     {
         for (int i = 1; i <= 30; i++)
         {
