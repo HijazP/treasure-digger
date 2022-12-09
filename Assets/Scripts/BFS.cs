@@ -13,8 +13,11 @@ public class BFS : MonoBehaviour
     private float edge = -0.5f;
     private bool toLeft = false;
     private bool toRight = true;
+    private int postX = 0;
     public ActiveGM gm;
     private Vector2 vect;
+    private Vector3 post;
+    private Quaternion rot;
 
     private void Awake()
     {
@@ -36,7 +39,7 @@ public class BFS : MonoBehaviour
             }
             else
             {
-                vect = new Vector2(0, 0);
+                vect = new Vector2(postX, 0);
                 moveVerti = false;
                 moveHori = true;
                 
@@ -50,11 +53,13 @@ public class BFS : MonoBehaviour
         {
             if (toLeft)
             {
-                vect = new Vector2(-1, 0);
+                postX = -1;
+                vect = new Vector2(postX, 0);
             }
             else if(toRight)
             {
-                vect = new Vector2(1, 0);
+                postX = 1;
+                vect = new Vector2(postX, 0);
             }
         }
 
@@ -107,18 +112,17 @@ public class BFS : MonoBehaviour
     public void PlayBFS()
     {
         StartCoroutine(StartBFS());
-        moveVerti = true;
     }
 
     IEnumerator StartBFS()
     {
         yield return new WaitForSecondsRealtime(3f);
+        moveVerti = true;
     }
 
     public void UpdateEdge(float upEdge)
     {
         edge = upEdge;
-        Debug.Log(edge);
     }
 
     public void ChangeDirection()
@@ -131,6 +135,13 @@ public class BFS : MonoBehaviour
     {
         moveVerti = false;
         moveHori = false;
+        vect = new Vector2(0, 0);
+    }
+
+    public void ResetPost()
+    {
+        transform.position = post;
+        transform.rotation = rot;
     }
 
     void OnTriggerEnter2D(Collider2D colli)

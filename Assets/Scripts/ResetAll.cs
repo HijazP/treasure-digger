@@ -8,6 +8,17 @@ public class ResetAll : MonoBehaviour
     {
         RandomTreasure.instance.PrefabReset();
         PlayerMovement.instance.ResetPost();
+
+        if (BFS.instance != null)
+        {
+            BFS.instance.ResetPost();
+        }
+
+        if (DFS.instance != null)
+        {
+            DFS.instance.ResetPost();
+        }
+
         ActiveGM.instance.Active();
         ScoreManager.instance.ResetScore();
         TimerCD.instance.ResetTime();

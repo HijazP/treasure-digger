@@ -8,6 +8,7 @@ TagManager:
   - Robot
   - BatasKiri
   - BatasKanan
+  - Treasure
   layers:
   - Default
   - TransparentFX
